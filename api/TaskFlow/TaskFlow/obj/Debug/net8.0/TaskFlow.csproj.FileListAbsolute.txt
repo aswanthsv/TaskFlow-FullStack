@@ -142,3 +142,4 @@ C:\Users\alekh\OneDrive\Documents\full stack angular\june-24\api\TaskFlow\TaskFl
 C:\Users\alekh\OneDrive\Documents\full stack angular\june-24\api\TaskFlow\TaskFlow\obj\Debug\net8.0\TaskFlow.pdb
 C:\Users\alekh\OneDrive\Documents\full stack angular\june-24\api\TaskFlow\TaskFlow\obj\Debug\net8.0\TaskFlow.genruntimeconfig.cache
 C:\Users\alekh\OneDrive\Documents\full stack angular\june-24\api\TaskFlow\TaskFlow\obj\Debug\net8.0\ref\TaskFlow.dll
+C:\Users\alekh\OneDrive\Documents\full stack angular\june-24\api\TaskFlow\TaskFlow\obj\Debug\net8.0\TaskFlow.sourcelink.json
