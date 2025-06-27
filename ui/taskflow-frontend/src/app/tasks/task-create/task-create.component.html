@@ -1,0 +1,48 @@
+<div class="container mt-4" style="max-width: 500px;">
+  <h3>Create Task</h3>
+
+  <form #taskForm="ngForm" (ngSubmit)="createTask()">
+
+    <!-- Title Input -->
+    <div class="mb-3">
+      <label class="form-label">Title</label>
+      <input
+        type="text"
+        name="title"
+        [(ngModel)]="title"
+        #titleField="ngModel"
+        class="form-control"
+        required
+        minlength="5"
+        [ngClass]="{
+          'is-invalid': titleField.invalid && (titleField.dirty || titleField.touched),
+          'is-valid': titleField.valid && (titleField.dirty || titleField.touched)
+        }"
+      />
+      <div *ngIf="titleField.invalid && (titleField.dirty || titleField.touched)" class="invalid-feedback">
+        <span *ngIf="titleField.errors?.['required']">Title is required.</span>
+        <span *ngIf="titleField.errors?.['minlength']">
+          Minimum 5 characters required. 
+          <span *ngIf="title.length < 5"> {{ 5 - title.length }} character{{ 5 - title.length > 1 ? 's' : '' }} left.</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea
+        name="description"
+        [(ngModel)]="description"
+        class="form-control"
+        required
+      ></textarea>
+    </div>
+
+    <button class="btn btn-primary" [disabled]="taskForm.invalid">Create Task</button>
+
+    <div *ngIf="error" class="text-danger mt-2">
+      {{ error }}
+    </div>
+  </form>
+</div>

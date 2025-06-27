@@ -1,0 +1,22 @@
+<div class="container mt-4" style="max-width: 500px;">
+  <h3>Edit Task</h3>
+  <form (ngSubmit)="updateTask()">
+    <div class="mb-3">
+      <label class="form-label">Title</label>
+      <input type="text" class="form-control" [(ngModel)]="task.title" name="title" required />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea class="form-control" [(ngModel)]="task.description" name="description" required></textarea>
+    </div>
+
+    <div class="form-check mb-3">
+      <input type="checkbox" class="form-check-input" [(ngModel)]="task.isCompleted" name="isCompleted" />
+      <label class="form-check-label">Mark as completed</label>
+    </div>
+
+    <button class="btn btn-success">Update</button>
+    <p class="text-danger mt-2" *ngIf="error">{{ error }}</p>
+  </form>
+</div>

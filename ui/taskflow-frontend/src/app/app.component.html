@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light px-4">
+  <a class="navbar-brand" routerLink="/">TaskFlow</a>
+
+  <div class="ms-auto">
+    <ng-container *ngIf="isLoggedIn; else loggedOut">
+      <a class="btn btn-outline-primary me-2" routerLink="/tasks">Tasks</a>
+      <button class="btn btn-outline-danger" (click)="logout()">Logout</button>
+    </ng-container>
+
+    <ng-template #loggedOut>
+      <a class="btn btn-outline-success me-2" routerLink="/login">Login</a>
+      <a class="btn btn-outline-secondary" routerLink="/register">Register</a>
+    </ng-template>
+  </div>
+</nav>
+
+<div class="container mt-4">
+  <router-outlet></router-outlet>
+</div>
