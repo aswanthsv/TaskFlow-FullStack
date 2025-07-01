@@ -3,4 +3,5 @@ export class TaskItem {
   title!: string;
   description!: string;
   isCompleted!: boolean;
+  dueDate?:string;
 }

@@ -1,15 +1,60 @@
 <div class="container mt-4">
-  <h3>Task List</h3>
+  <h2>Task List</h2>
 
-  <!-- 🔍 Search box -->
-  <input
-    type="text"
-    [(ngModel)]="searchText"
-    (input)="applyFilter()"
-    class="form-control mb-3"
-    placeholder="Search tasks by title..."
-  />
-<button class="btn btn-primary" [routerLink]="['/tasks/create']">+ Add Task</button>
+  <div class="row text-center mb-4">
+    <div class="col">
+      <div class="card bg-light">
+        <div class="card-body">
+          <h5>Total Tasks</h5>
+          <p class="fs-4">{{ tasks.length }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card bg-light">
+        <div class="card-body">
+          <h5>Completed</h5>
+          <p class="fs-4 text-success">{{ completedCount }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card bg-light">
+        <div class="card-body">
+          <h5>Pending</h5>
+          <p class="fs-4 text-danger">{{ pendingCount }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row align-items-center mb-3">
+    <div class="col-md-5 mb-2">
+      <input
+        type="text"
+        [(ngModel)]="searchText"
+        (input)="applyFilter()"
+        class="form-control"
+        placeholder="Search tasks by title..."
+      />
+    </div>
+
+    <div class="col-md-4 mb-2">
+      <select [(ngModel)]="sortOption" (change)="sortTasks()" class="form-select">
+        <option value="">Sort By</option>
+        <option value="titleAsc">Title (A → Z)</option>
+        <option value="titleDesc">Title (Z → A)</option>
+        <option value="completedFirst">Completed First</option>
+        <option value="pendingFirst">Pending First</option>
+      </select>
+    </div>
+
+    <div class="col-md-3 text-md-end mb-2">
+      <button class="btn btn-primary w-100 w-md-auto" [routerLink]="['/tasks/create']">+ Add Task</button>
+    </div>
+  </div>
+
+  <!-- 📋 Task List -->
   <ul class="list-group">
     <li
       *ngFor="let task of filteredTasks"
@@ -19,6 +64,17 @@
         <h5>{{ task.title }}</h5>
         <p>{{ task.description }}</p>
         <p>Status: {{ task.isCompleted ? '✅ Completed' : '❌ Pending' }}</p>
+        <p>
+          Due:
+          <span
+            [ngClass]="{
+              'text-danger': isOverdue(task.dueDate, task.isCompleted),
+              'text-muted': !isOverdue(task.dueDate, task.isCompleted)
+            }"
+          >
+            {{ task.dueDate | date: 'MMM d, y' }}
+          </span>
+        </p>
       </div>
       <div>
         <a [routerLink]="['/tasks/edit', task.id]" class="btn btn-sm btn-outline-secondary me-2">Edit</a>

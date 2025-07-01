@@ -17,9 +17,10 @@ export class TaskService {
   }
 
   // ✅ 2. Create task
-  createTask(dto: { title: string; description: string }): Observable<any> {
-    return this.http.post(this.apiUrl, dto);
-  }
+ createTask(dto: { title: string; description: string; dueDate?: string }): Observable<any> {
+  return this.http.post(this.apiUrl, dto);
+}
+
 
   // ✅ 3. Get task by ID
   getTaskById(id: number): Observable<TaskItem> {

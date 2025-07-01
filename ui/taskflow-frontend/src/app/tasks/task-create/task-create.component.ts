@@ -10,6 +10,7 @@ export class TaskCreateComponent {
   title: string = '';
   description: string = '';
   error: string = '';
+  dueDate: string='';
 
   constructor(private taskService: TaskService, private router: Router) {}
 
@@ -19,7 +20,7 @@ export class TaskCreateComponent {
       return;
     }
 
-    this.taskService.createTask({ title: this.title, description: this.description }).subscribe({
+    this.taskService.createTask({ title: this.title, description: this.description, dueDate:this.dueDate }).subscribe({
       next: () => this.router.navigate(['/tasks']),
       error: () => this.error = 'Failed to create task'
     });

@@ -11,6 +11,11 @@ export class TaskListComponent implements OnInit {
   filteredTasks: TaskItem[]=[];
   searchText: string ='';
   error: string='';
+  sortOption: string='';
+  completedCount = 0;
+  pendingCount = 0;
+  
+
 
   constructor(private taskService: TaskService) {}
 
@@ -23,10 +28,16 @@ export class TaskListComponent implements OnInit {
     next: (res) => {
       this.tasks = res;
       this.filteredTasks = res; // ✅ Show all on load
+      this.calculateSummary();
     },
     error: () => this.error = 'Failed to load tasks'
   });
 }
+calculateSummary() {
+  this.completedCount=this.tasks.filter(t=>t.isCompleted).length;
+  this.pendingCount=this.tasks.length- this.completedCount;
+}
+
  applyFilter() {
   const text = this.searchText.trim().toLowerCase();
 
@@ -36,6 +47,26 @@ export class TaskListComponent implements OnInit {
     this.filteredTasks = this.tasks.filter(task =>
       task.title.toLowerCase().includes(text)
     );
+  }
+  this.sortTasks();
+}
+
+sortTasks():void {
+  switch(this.sortOption){
+    case 'titleAsc':
+      this.filteredTasks.sort((a,b)=>a.title.localeCompare(b.title));
+      break;
+
+      case 'titleDesc':
+        this.filteredTasks.sort((a,b)=>b.title.localeCompare(a.title));
+        break;
+
+        case 'completedFirst':
+          this.filteredTasks.sort((a,b)=>Number(b.isCompleted)-Number(a.isCompleted));
+          break;
+          
+          case 'pendingFirst':
+            this.filteredTasks.sort((a,b)=>Number(a.isCompleted)-Number(b.isCompleted));
   }
 }
 
@@ -47,5 +78,11 @@ export class TaskListComponent implements OnInit {
     });
   }
 }
+isOverdue(date?: string | Date | null, isCompleted: boolean = false): boolean {
+  if (!date || isCompleted) return false;
+  return new Date(date) < new Date();
+}
+
+
 
 }

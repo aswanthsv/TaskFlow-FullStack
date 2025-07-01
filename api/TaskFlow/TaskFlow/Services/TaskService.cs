@@ -19,7 +19,9 @@ namespace TaskFlow.API.Services
             {
                 Title = dto.Title,
                 Description = dto.Description,
-                UserId = userId
+                UserId = userId,
+                DueDate = dto.DueDate
+
             };
 
             await _repository.AddAsync(task);
@@ -58,6 +60,7 @@ namespace TaskFlow.API.Services
             task.Title = dto.Title;
             task.Description = dto.Description;
             task.IsCompleted = dto.IsCompleted;
+            task.DueDate= dto.DueDate;
 
             await _repository.SaveChangesAsync();
             return true;
@@ -70,7 +73,10 @@ namespace TaskFlow.API.Services
                 Id = task.Id,
                 Title = task.Title,
                 Description = task.Description,
-                IsCompleted = task.IsCompleted
+                IsCompleted = task.IsCompleted,
+                DueDate = task.DueDate
+
+
             };
         }
     }

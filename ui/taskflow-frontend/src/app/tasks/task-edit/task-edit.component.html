@@ -10,6 +10,13 @@
       <label class="form-label">Description</label>
       <textarea class="form-control" [(ngModel)]="task.description" name="description" required></textarea>
     </div>
+    <div class="mb3">
+              <label class="form-label">DueDate</label>
+
+              <input type="date" [(ngModel)]="task.dueDate" name="dueDate" class="form-control" />
+
+
+    </div>
 
     <div class="form-check mb-3">
       <input type="checkbox" class="form-check-input" [(ngModel)]="task.isCompleted" name="isCompleted" />

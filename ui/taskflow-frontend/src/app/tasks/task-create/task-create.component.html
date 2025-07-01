@@ -6,6 +6,8 @@
     <!-- Title Input -->
     <div class="mb-3">
       <label class="form-label">Title</label>
+      
+
       <input
         type="text"
         name="title"
@@ -37,6 +39,10 @@
         class="form-control"
         required
       ></textarea>
+    </div>
+    <div class="mb-3">
+        <label>Due Date</label>
+<input type="date" [(ngModel)]="dueDate" name="dueDate" class="form-control" />
     </div>
 
     <button class="btn btn-primary" [disabled]="taskForm.invalid">Create Task</button>
