@@ -9,5 +9,6 @@ namespace TaskFlow.Data
 
         public DbSet<User> Users=> Set<User>();
         public DbSet<TaskItem> TaskItems => Set<TaskItem>();
+        public DbSet<Category> Categories {  get; set; }
     }
 }

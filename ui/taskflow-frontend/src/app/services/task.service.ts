@@ -27,6 +27,13 @@ export class TaskService {
     return this.http.get<TaskItem>(`${this.apiUrl}/${id}`);
   }
 
+  getTasksPaged(page: number, size: number): Observable<{ items: TaskItem[], totalPages: number, totalCount: number, currentPage: number }> {
+  return this.http.get<{ items: TaskItem[], totalPages: number, totalCount: number, currentPage: number }>(
+    `${this.apiUrl}/paged?pageNumber=${page}&pageSize=${size}`
+  );
+}
+
+
   // ✅ 4. Update task
   updateTask(id: number, task: TaskItem): Observable<any> {
     return this.http.put(`${this.apiUrl}/${id}`, task);

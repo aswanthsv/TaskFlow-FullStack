@@ -6,7 +6,7 @@
       <div class="card bg-light">
         <div class="card-body">
           <h5>Total Tasks</h5>
-          <p class="fs-4">{{ tasks.length }}</p>
+          <p class="fs-4">{{ tasks?.length || 0 }}</p>
         </div>
       </div>
     </div>
@@ -54,7 +54,7 @@
     </div>
   </div>
 
-  <!-- 📋 Task List -->
+  <!-- Task List -->
   <ul class="list-group">
     <li
       *ngFor="let task of filteredTasks"
@@ -82,6 +82,16 @@
       </div>
     </li>
   </ul>
+
+  <div class="d-flex justify-content-center mt-4">
+    <button class="btn btn-outline-secondary me-2" (click)="prevPage()" [disabled]="currentPage === 1">
+      Previous
+    </button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button class="btn btn-outline-secondary ms-2" (click)="nextPage()" [disabled]="currentPage === totalPages">
+      Next
+    </button>
+  </div>
 
   <p *ngIf="filteredTasks.length === 0" class="text-muted mt-3">No tasks found.</p>
 </div>

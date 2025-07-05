@@ -18,12 +18,12 @@ import { AuthService } from './services/auth.service';
 import { TaskService } from './services/task.service';
 
 import { AuthInterceptor } from './interceptors/auth.interceptor';
-import { AuthGuard } from './guards/auth.guard'; // ✅ FIXED
+import { AuthGuard } from './guards/auth.guard'; 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,      // ✅ FIXED
+    LoginComponent,      
     RegisterComponent,
     TaskListComponent,
     TaskCreateComponent,
@@ -38,7 +38,7 @@ import { AuthGuard } from './guards/auth.guard'; // ✅ FIXED
   providers: [
     AuthService,
     TaskService,
-    AuthGuard, // ✅ FIXED
+    AuthGuard, 
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

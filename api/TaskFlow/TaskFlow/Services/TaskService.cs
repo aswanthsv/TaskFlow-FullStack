@@ -1,4 +1,7 @@
-﻿using TaskFlow.DTOs;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using TaskFlow.Data;
+using TaskFlow.DTOs;
 using TaskFlow.Interfaces;
 using TaskFlow.Models;
 
@@ -12,6 +15,7 @@ namespace TaskFlow.API.Services
         {
             _repository = repository;
         }
+
 
         public async Task<TaskItemDto> CreateTask(int userId, CreateTaskDto dto)
         {
@@ -46,6 +50,7 @@ namespace TaskFlow.API.Services
             return task == null ? null : MapToDto(task);
         }
 
+
         public async Task<List<TaskItemDto>> GetTasksForUser(int userId)
         {
             var tasks = await _repository.GetAllByUserAsync(userId);
@@ -77,7 +82,26 @@ namespace TaskFlow.API.Services
                 DueDate = task.DueDate
 
 
+
             };
         }
+
+
+
+        public async Task<PagedResultDto<TaskItemDto>> GetTasksPaged(int userId, int pageNumber, int pageSize)
+        {
+            var (tasks, totalCount) = await _repository.GetTasksPagedAsync(userId, pageNumber, pageSize);
+
+            return new PagedResultDto<TaskItemDto>
+            {
+                Items = tasks.Select(MapToDto).ToList(),
+                TotalCount = totalCount,
+                CurrentPage = pageNumber,
+                TotalPages = (int)Math.Ceiling(totalCount / (double)pageSize)
+            };
+        }
+
+
+
     }
 }

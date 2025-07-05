@@ -23,7 +23,7 @@ namespace TaskFlow.Controllers
 
             var user = await _authService.Register(request);
             return Ok(new { user.Id, user.Username });
-        }
+        }  
 
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserLoginDto request)

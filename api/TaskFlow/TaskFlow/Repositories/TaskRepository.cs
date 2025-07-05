@@ -38,5 +38,21 @@ namespace TaskFlow.Repositories
         {
             await _context.SaveChangesAsync();
         }
+        public async Task<(List<TaskItem> Tasks, int TotalCount)> GetTasksPagedAsync(int userId, int pageNumber, int pageSize)
+        {
+            var query = _context.TaskItems
+                .Where(t => t.UserId == userId)
+                .OrderByDescending(t => t.DueDate); // Optional: adjust your ordering
+
+            var totalCount = await query.CountAsync();
+
+            var tasks = await query
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return (tasks, totalCount);
+        }
+
     }
 }

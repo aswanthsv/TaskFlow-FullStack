@@ -37,6 +37,15 @@ namespace TaskFlow.API.Controllers
             return Ok(task);
         }
 
+        [HttpGet("paged")]
+        public async Task<ActionResult<PagedResultDto<TaskItemDto>>> GetPaged(int pageNumber = 1, int pageSize = 5)
+        {
+            var userId = GetUserId();
+            var result = await _taskService.GetTasksPaged(userId, pageNumber, pageSize);
+            return Ok(result);
+        }
+
+
         [HttpPost]
         public async Task<IActionResult> Create(CreateTaskDto dto)
         {

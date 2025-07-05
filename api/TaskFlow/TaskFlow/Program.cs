@@ -28,6 +28,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<IAuthService,AuthService>();
 builder.Services.AddScoped<ITaskService,TaskService>();
 builder.Services.AddScoped<ITaskRepository,TaskRepository>();
+builder.Services.AddScoped<ICategoryRepository,CategoryRepository>();
+builder.Services.AddScoped<ICategoryService,CategoryService>();
 
 // Add services to the container.
 

@@ -9,5 +9,6 @@ namespace TaskFlow.Interfaces
         Task<TaskItemDto> CreateTask(int userId, CreateTaskDto dto);
         Task<bool> UpdateTask(int id, int userId,UpdateTaskDto dto);
         Task<bool> DeleteTask(int id, int userId);
+        Task<PagedResultDto<TaskItemDto>> GetTasksPaged(int userId, int pageNumber, int pageSize);
     }
 }

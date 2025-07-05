@@ -111,6 +111,37 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "TaskFlow.API.Controllers.TaskController",
+    "Method": "GetPaged",
+    "RelativePath": "api/Task/paged",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TaskFlow.DTOs.PagedResultDto\u00601[[TaskFlow.DTOs.TaskItemDto, TaskFlow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "TaskFlow.Controllers.WeatherForecastController",
     "Method": "Get",
     "RelativePath": "WeatherForecast",

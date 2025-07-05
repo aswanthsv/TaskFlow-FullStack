@@ -9,5 +9,7 @@ namespace TaskFlow.Interfaces
         Task AddAsync(TaskItem task);
         void Delete(TaskItem task);
         Task SaveChangesAsync();
+        Task<(List<TaskItem> Tasks, int TotalCount)> GetTasksPagedAsync(int userId, int pageNumber, int pageSize);
+
     }
 }

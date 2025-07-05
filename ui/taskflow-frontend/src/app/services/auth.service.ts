@@ -12,7 +12,13 @@ export class AuthService {
 
   private loggedIn = new BehaviorSubject<boolean>(this.hasToken());
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  const token = this.getToken();
+  if (token) {
+    this.setUser(token);          // ✅ parse user info from token
+    this.loggedIn.next(true);     // ✅ update loggedIn status
+  }
+}
 
   login(username: string, password: string): Observable<any> {
     return this.http.post<{ token: string }>(`${this.apiUrl}/login`, { username, password }).pipe(
