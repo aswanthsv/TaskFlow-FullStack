@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
@@ -7,7 +7,7 @@ using TaskFlow.Interfaces;
 
 namespace TaskFlow.API.Controllers
 {
-    [Authorize]
+    [Authorize(route)]
     [ApiController]
     [Route("api/[controller]")]
     public class TaskController : ControllerBase
